@@ -1,0 +1,66 @@
+Git is a distributed version control system.
+Git is free software.
+
+=======================
+git学习
+
+设置账号
+git config --global user.email "zjm122796@163.com"
+git config --global user.name "zhaojiamin"
+
+初始化一个Git仓库，使用git init命令。
+
+添加文件到Git仓库，分两步：
+
+使用命令git add <file>，注意，可反复多次使用，添加多个文件；
+使用命令git commit -m <message>，完成。
+
+
+$git diff readme.txt
+diff --git a/readme.txt b/readme.txt
+index d8036c1..d0eec0a 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,2 +1,16 @@
+-Git is a version control system.
+-Git is free software.
+\ No newline at end of file
++Git is a distributed version control system.
++Git is free software.
++
++=======================
+
+
+需要友情提示的是，你看到的一大串类似1094adb...的是commit id（版本号），和SVN不一样，Git的commit id不是1，2，3……递增的数字，而是一个SHA1计算出来的一个非常大的数字，用十六进制表示，而且你看到的commit id和我的肯定不一样，以你自己的为准。为什么commit id需要用这么一大串数字表示呢？因为Git是分布式的版本控制系统，后面我们还要研究多人在同一个版本库里工作，如果大家都用1，2，3……作为版本号，那肯定就冲突了。
+
+查看所有的历史版本
+$ git reflog
+e027f0e (HEAD -> master) HEAD@{0}: commit: append distributed
+223d2b2 HEAD@{1}: commit (initial): write a file
+
+
+
+恢复到某一个历史版本
+$ git reset --hard e027f0e
+
+
+
+
+$ git log --pretty=oneline
+e027f0e57d566e0e7f1506a45d413c9c1d3caac8 (HEAD -> master) append distributed
+223d2b2dd3190f8520ac742e57d48716499f26f3 write a file
+
+
+前面讲了我们把文件往Git版本库里添加的时候，是分两步执行的：
+
+第一步是用git add把文件添加进去，实际上就是把文件修改添加到暂存区；
+
+第二步是用git commit提交更改，实际上就是把暂存区的所有内容提交到当前分支。
+
+因为我们创建Git版本库时，Git自动为我们创建了唯一一个master分支，所以，现在，git commit就是往master分支上提交更改。
+
+你可以简单理解为，需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+
+====================
+================
+====
